@@ -7,7 +7,8 @@ pipeline {
             steps {
                 echo "Running Selenium Tests using pytest"
 
-                bat 'python3 install -r requirements.txt'
+                bat 'python -m pip install -r requirements.txt'
+
 
                 // Start Flask app
                 bat 'start /B python app.py'
@@ -56,5 +57,6 @@ pipeline {
         }
     }
 }
+
 
 
