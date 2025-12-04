@@ -17,7 +17,8 @@ pipeline {
                 bat 'sleep 5'
 
                 // Run tests using pytest
-                bat '/Users/akshithareddyk/Library/Python/3.9/bin/pytest -v'
+                // bat '/Users/akshithareddyk/Library/Python/3.9/bin/pytest -v'
+                bat 'C:\Users\Admin\AppData\Local\Programs\Python\Python313\Scripts\pytest.exe -v'
 
             }
         }
@@ -60,5 +61,6 @@ pipeline {
         }
     }
 }
+
 
 
