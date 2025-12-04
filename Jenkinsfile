@@ -7,25 +7,21 @@ pipeline {
             steps {
                 echo "Running Selenium Tests using pytest"
 
-                // Install Python dependencies
                 bat 'pip3 install -r requirements.txt'
 
-                // Start Flask app in background
-                bat 'nohup python3 app.py &'
+                // Start Flask app
+                bat 'start /B python app.py'
 
-                // Wait a few seconds for the server to start
-                bat 'sleep 5'
+                // Wait for server
+                bat 'timeout /t 5'
 
-                // Run tests using pytest
-                // bat '/Users/akshithareddyk/Library/Python/3.9/bin/pytest -v'
-                bat 'C:\Users\Admin\AppData\Local\Programs\Python\Python313\Scripts\pytest.exe -v'
-
+                // Run PyTest
+                bat 'C:/Users/Admin/AppData/Local/Programs/Python/Python313/Scripts/pytest.exe -v'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                echo "Build Docker Image"
                 bat "docker build -t seleniumdemoapp:v1 ."
             }
         }
@@ -38,7 +34,6 @@ pipeline {
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-                echo "Push Docker Image to Docker Hub"
                 bat "docker tag seleniumdemoapp:v1 akshithareddy27/sample:seleniumtestimage"
                 bat "docker push akshithareddy27/sample:seleniumtestimage"
             }
@@ -61,6 +56,3 @@ pipeline {
         }
     }
 }
-
-
-
